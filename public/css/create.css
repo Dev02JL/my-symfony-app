@@ -1,0 +1,89 @@
+/* Conteneur principal */
+form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Titre de la page */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Styles des champs de formulaire */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="file"],
+form input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Effet au focus */
+form input[type="text"]:focus,
+form input[type="file"]:focus,
+form input[type="datetime-local"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Style du bouton de soumission */
+form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Effet au survol du bouton */
+form button[type="submit"]:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Espacement entre les champs */
+form div {
+    margin-bottom: 20px;
+}
+
+/* Alignement et style du champ de fichier */
+form input[type="file"] {
+    padding: 5px;
+}
+
+/* Amélioration de l'apparence pour le champ de date */
+form input[type="datetime-local"] {
+    padding: 10px;
+}
+
+/* Centrage du bouton */
+form button {
+    display: block;
+    margin-top: 10px;
+}

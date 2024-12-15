@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="article-container">
+        <a href="{{ path('list_articles') }}">Retour à la liste des articles</a>
+        <h1>{{ article.title }}</h1>
+        <img src="{{ asset(article.imagePath) }}" alt="{{ article.title }}">
+        <div class="article-details">
+            <p>Date de création : {{ article.createdAt|date('d/m/Y H:i') }}</p>
+        </div>
+
+        <hr>
+
+        <div class="comments-section">
+            <h2>Commentaires</h2>
+
+            {% if article.comments is not empty %}
+                <ul>
+                    {% for comment in article.comments %}
+                        <li>
+                            <strong>{{ comment.user.username }}</strong> - {{ comment.createdAt|date('d/m/Y H:i') }}<br>
+                            <p>{{ comment.content }}</p>
+
+                            {% if app.user and (app.user == comment.user or app.user.username == 'root') %}
+                                <form action="{{ path('delete_comment', { id: comment.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucun commentaire pour cet article.</p>
+            {% endif %}
+
+            {% if app.user %}
+                <form action="{{ path('add_comment', { id: article.id }) }}" method="post" class="comment-form">
+                    <div>
+                        <textarea name="content" placeholder="Votre commentaire..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter un commentaire</button>
+                </form>
+            {% else %}
+                <p><a href="{{ path('app_login') }}">Connectez-vous pour commenter</a></p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

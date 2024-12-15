@@ -1,0 +1,19 @@
+<header class="main-header">
+    <div class="logo">
+        <a href="{{ path('home') }}">My Awesome Website</a>
+    </div>
+
+    <div class="authentification">
+        {% if app.user %}
+            <div class="user-info">
+                <span class="username">Salutations {{ app.user.username }} !</span>
+                <a href="{{ path('app_logout') }}" class="logout-button btn btn-danger">Se déconnecter</a>
+            </div>
+        {% else %}
+            <div class="auth-buttons">
+                <a href="{{ path('app_register') }}" class="btn btn-primary">S'inscrire</a>
+                <a href="{{ path('app_login') }}" class="btn btn-secondary">Se connecter</a>
+            </div>
+        {% endif %}
+    </div>
+</header>

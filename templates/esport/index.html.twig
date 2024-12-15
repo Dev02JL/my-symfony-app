@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About T1</title>
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/esport.css') }}">
+    </head>
+    <body>
+        {% include 'partials/_header.html.twig' %}
+        <a href="{{ path('home') }}">
+            <img src="{{ asset('images/T1_logo.svg.png') }}" alt="Banner Image" class="banner-image">
+        </a>
+        <div class="container">
+            <header>
+                <h1>About T1</h1>
+            </header>
+            <main>
+                <p class="description">
+                    T1 est une équipe d'esports sud-coréenne, une coentreprise entre SK Telecom et Comcast Spectacor.
+                    L'équipe League of Legends de SKT a remporté les éditions 2013, 2015, 2016, 2023 et 2024 des championnats du monde de ce jeu, c'est l'équipe la plus titrée de la compétition.
+                </p>
+            </main>
+        </div>
+    </body>
+</html>

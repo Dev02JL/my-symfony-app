@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/article.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="navigation">
+        {% if app.user and app.user.username == 'root' %}
+            <a href="{{ path('create_article') }}" class="btn btn-primary">Créer un Article</a>
+        {% endif %}
+    </div>
+
+    <h2>Liste des Articles</h2>
+
+    <ul>
+        {% for article in articles %}
+            <li>
+                <a href="{{ path('show_article', { id: article.id }) }}">
+                    <img src="{{ asset(article.imagePath) }}" alt="{{ article.title }}">
+                </a>
+                <p>{{ article.title }}</p>
+                {% if app.user and app.user.username == 'root' %}
+                    <form action="{{ path('delete_article', { id: article.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% else %}
+            <li>Aucun article disponible.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

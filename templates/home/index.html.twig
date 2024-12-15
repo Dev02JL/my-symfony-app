@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Page d'Accueil</title>
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    </head>
+    
+    <body>
+        {% include 'partials/_header.html.twig' %}
+
+        <div class="navigation-container">
+            <a href="{{ path('list_articles') }}" class="btn btn-terciary">Voir les Articles</a>
+        </div>
+
+        {% if latestArticles is not empty %}
+            <h2>Derniers Articles</h2>
+            <ul class="latest-articles">
+                {% for article in latestArticles %}
+                    <li>
+                        <h3>{{ article.title }}</h3>
+                        <img src="{{ asset(article.imagePath) }}" alt="{{ article.title }}">
+                        <a href="{{ path('show_article', { id: article.id }) }}" class="btn btn-primary">Lire l'article</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun article disponible.</p>
+        {% endif %}
+
+        {% if users is not empty %}
+            <h2>Liste des Utilisateurs</h2>
+            <ul class="user-list">
+                {% for user in users %}
+                    {% if user.username != 'root' %}
+                        <li>
+                            {{ user.username }}
+                            <form action="{{ path('delete_user', { id: user.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                <button type="submit" class="delete-button">Supprimer</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+</html>
